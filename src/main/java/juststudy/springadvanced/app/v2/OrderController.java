@@ -1,7 +1,7 @@
 package juststudy.springadvanced.app.v2;
 
 import juststudy.springadvanced.trace.LogTraceStatus;
-import juststudy.springadvanced.trace.TraceService;
+import juststudy.springadvanced.trace.LogTraceServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,19 +13,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class OrderController {
     private final OrderService orderService;
-    private final TraceService traceService;
+    private final LogTraceServiceImpl logTraceService;
 
     @GetMapping("/order")
     public ResponseEntity order(String itemId) {
         LogTraceStatus trace = null;
 
         try {
-            trace = traceService.begin(this.getClass().getSimpleName() + ".order()");
+            trace = logTraceService.begin(this.getClass().getSimpleName() + ".order()");
             orderService.order(itemId, trace.getLogTrace());
-            traceService.end(trace);
+            logTraceService.end(trace);
             return ResponseEntity.ok(itemId + " is ordered.");
         } catch (Exception e) {
-            traceService.exception(trace, e);
+            logTraceService.exception(trace, e);
             throw e;
         }
     }

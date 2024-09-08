@@ -1,12 +1,11 @@
 package juststudy.springadvanced.trace;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
-public class TraceService {
+public class LogTraceServiceImpl {
 
     private static final String LOG_START_PREFIX = "--->";
     private static final String LOG_COMPLETE_PREFIX = "<---";

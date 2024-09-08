@@ -2,7 +2,7 @@ package juststudy.springadvanced.app.v2;
 
 import juststudy.springadvanced.trace.LogTrace;
 import juststudy.springadvanced.trace.LogTraceStatus;
-import juststudy.springadvanced.trace.TraceService;
+import juststudy.springadvanced.trace.LogTraceServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,17 +10,17 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class OrderService {
     private final OrderRepository orderRepository;
-    private final TraceService traceService;
+    private final LogTraceServiceImpl logTraceService;
 
     public void order(String itemId, LogTrace logTrace) {
         LogTraceStatus logTraceStatus = null;
 
         try {
-            logTraceStatus = traceService.beginSync(logTrace, this.getClass().getSimpleName() + ".order()");
+            logTraceStatus = logTraceService.beginSync(logTrace, this.getClass().getSimpleName() + ".order()");
             orderRepository.save(itemId, logTraceStatus.getLogTrace());
-            traceService.end(logTraceStatus);
+            logTraceService.end(logTraceStatus);
         } catch (Exception e) {
-            traceService.exception(logTraceStatus, e);
+            logTraceService.exception(logTraceStatus, e);
             throw e;
         }
 
