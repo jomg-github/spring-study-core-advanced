@@ -1,7 +1,7 @@
 package juststudy.springadvanced.app.v1;
 
 import juststudy.springadvanced.trace.LogTraceStatus;
-import juststudy.springadvanced.trace.LogTraceServiceImpl;
+import juststudy.springadvanced.trace.v2.LogTraceServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
