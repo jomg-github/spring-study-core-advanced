@@ -1,7 +1,5 @@
 package juststudy.springadvanced.trace;
 
-import juststudy.springadvanced.trace.LogTraceStatus;
-
 public interface LogTraceService {
     LogTraceStatus begin(String message);
     void end(LogTraceStatus status);
