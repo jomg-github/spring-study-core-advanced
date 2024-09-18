@@ -10,13 +10,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RequestMapping("/v3")
-@RestController("OrderControllerV3")
-@RequiredArgsConstructor
+@RestController("orderControllerV3")
 public class OrderController {
+
     private final OrderService orderService;
 
-    @Qualifier("logTraceServiceV3")
     private final LogTraceService logTraceService;
+
+    public OrderController(@Qualifier("orderServiceV3") OrderService orderService,
+                           @Qualifier("logTraceServiceV3") LogTraceService logTraceService) {
+        this.orderService = orderService;
+        this.logTraceService = logTraceService;
+    }
 
     @GetMapping("/order")
     public ResponseEntity order(String itemId) {

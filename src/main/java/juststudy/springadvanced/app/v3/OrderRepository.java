@@ -6,11 +6,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
-@Repository("OrderRepositoryV3")
-@RequiredArgsConstructor
+@Repository("orderRepositoryV3")
 public class OrderRepository {
-    @Qualifier("logTraceServiceV3")
+
     private final LogTraceService logTraceService;
+
+    public OrderRepository(@Qualifier("logTraceServiceV3") LogTraceService logTraceService) {
+        this.logTraceService = logTraceService;
+    }
 
     public void save(String itemId) {
         LogTraceStatus trace = null;

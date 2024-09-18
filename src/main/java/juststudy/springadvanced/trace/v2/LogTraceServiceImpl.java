@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Slf4j
-@Service("LogTraceServiceV2")
+@Service("logTraceServiceV2")
 public class LogTraceServiceImpl {
 
     private static final String LOG_START_PREFIX = "--->";

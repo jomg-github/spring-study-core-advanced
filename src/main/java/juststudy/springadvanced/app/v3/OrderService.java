@@ -6,12 +6,18 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-@Service("OrderServiceV3")
-@RequiredArgsConstructor
+@Service("orderServiceV3")
 public class OrderService {
+
     private final OrderRepository orderRepository;
-    @Qualifier("logTraceServiceV3")
+
     private final LogTraceService logTraceService;
+
+    public OrderService(@Qualifier("orderRepositoryV3") OrderRepository orderRepository,
+                        @Qualifier("logTraceServiceV3") LogTraceService logTraceService) {
+        this.orderRepository = orderRepository;
+        this.logTraceService = logTraceService;
+    }
 
     public void order(String itemId) {
         LogTraceStatus logTraceStatus = null;
