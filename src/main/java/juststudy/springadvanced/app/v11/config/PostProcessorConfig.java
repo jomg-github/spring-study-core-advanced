@@ -1,7 +1,7 @@
 package juststudy.springadvanced.app.v11.config;
 
 import juststudy.springadvanced.trace.LogTraceService;
-import juststudy.springadvanced.trace.v10.LogTraceAdvice;
+import juststudy.springadvanced.trace.v11.LogTraceAdvice;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.aop.Advisor;
 import org.springframework.aop.support.DefaultPointcutAdvisor;
@@ -17,7 +17,7 @@ public class PostProcessorConfig {
     private static final String BASE_PACKAGE = "juststudy.springadvanced.app.v11";
 
     @Bean
-    public LogTracePostProcessor logTracePostProcessor(@Qualifier("logTraceServiceV10") LogTraceService logTraceService) {
+    public LogTracePostProcessor logTracePostProcessor(@Qualifier("logTraceServiceV11") LogTraceService logTraceService) {
         return new LogTracePostProcessor(BASE_PACKAGE, advisor(logTraceService));
     }
 
